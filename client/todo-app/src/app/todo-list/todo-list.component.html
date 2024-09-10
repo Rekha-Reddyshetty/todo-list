@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 style="margin: 20px;">Todo List</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <input type="text" class="form-control" [(ngModel)]="newTodo.name" placeholder="New Todo" />
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-primary" style="margin-left: 10px;" (click)="addTodo()">Add</button>
+    </div>
+  </div>
+
+  <div style="margin-left: -16px;margin-top: 20px;">
+    <ul>
+      <li *ngFor="let todo of todos">
+          <div *ngIf="editingId != todo.id" class="row">
+            <div class="col-md-4">{{ todo.name }}</div>
+            <div class="col-md-1"><button (click)="editTodo(todo)" class="edit-btn">Edit</button></div>
+            <div class="col-md-1"><button (click)="deleteTodo(todo.id)" class="delete-btn">Delete</button></div>
+          </div>
+      
+          <div *ngIf="editingId == todo.id" class="row">
+            <div class="col-md-4"><input [(ngModel)]="todo.name" /></div>
+            <div class="col-md-1"><button (click)="updateTodo(todo)" class="save-btn">Save</button></div>
+            <div class="col-md-1"><button (click)="cancelEdit(todo)" class="cancel-btn">Cancel</button></div>
+          </div>
+        
+      </li>
+    </ul>
+  </div>
+</div>
